@@ -1,8 +1,8 @@
-var AmpersandModel = require('ampersand-model');
+// chapter Model - chapter.js
+var AmpModel = require('ampersand-model');
 
 
-module.exports = AmpersandModel.extend({
-  type: 'user',
+module.exports = AmpModel.extend({
   props: {
     first_name: ['string'],
     last_name: ['string'],

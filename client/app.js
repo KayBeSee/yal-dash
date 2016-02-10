@@ -4,11 +4,17 @@ var logger = require('andlog');
 var config = require('clientconfig');
 
 var Router = require('./router');
-var tracking = require('./helpers/metrics');
-var MainView = require('./views/main');
-var Me = require('./models/me');
-var People = require('./models/persons');
+// var tracking = require('./helpers/metrics');
+var MainView = require('./main');
 var domReady = require('domready');
+
+// models
+var Me = require('./models/me');
+var Chapters = require('./models/chapters');
+var Activism_Events = require('./models/activism_events');
+var Notes = require('./models/notes');
+var Students = require('./models/students');
+var Users = require('./models/users');
 
 
 module.exports = {
@@ -19,7 +25,11 @@ module.exports = {
     // create our global 'me' object and an empty collection for our people
     // models.
     window.me = new Me();
-    this.people = new People();
+    this.chapters = new Chapters();
+    this.activism_events = new Activism_Events();
+    this.notes = new Notes();
+    this.students = new Students();
+    this.users = new Users();
 
     // init our URL handlers and the history tracker
     this.router = new Router();

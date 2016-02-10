@@ -4,7 +4,7 @@ var PersonForm = require('../forms/person');
 
 module.exports = PageView.extend({
   pageTitle: 'edit person',
-  template: require('../templates/pages/personEdit.hbs'),
+  template: require('../templates/pages/chapter-edit.hbs'),
   initialize: function (spec) {
     var self = this;
     app.people.getOrFetch(spec.id, {all: true}, function (err, model) {

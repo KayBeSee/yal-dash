@@ -1,14 +1,11 @@
 var View = require('ampersand-view');
 
 module.exports = View.extend({
-  template: require('../templates/includes/person.hbs'),
+  template: require('../../templates/includes/chapter.hbs'),
   bindings: {
-    'model.fullName': '[data-hook~=name]',
-    'model.avatar': {
-      type: 'attribute',
-      hook: 'avatar',
-      name: 'src'
-    },
+    'model.school_name': '[data-hook=school_name]',
+    'model.state': '[data-hook=state]',
+    'model.state_chair': '[data-hook=state_chair]',
     'model.editUrl': {
       type: 'attribute',
       hook: 'action-edit',
@@ -16,7 +13,7 @@ module.exports = View.extend({
     },
     'model.viewUrl': {
       type: 'attribute',
-      hook: 'name',
+      hook: 'school_name',
       name: 'href'
     }
   },

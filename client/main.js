@@ -11,10 +11,10 @@ var domify       = require('domify');
 var dom          = require('ampersand-dom');
 var setFavicon   = require('favicon-setter');
 
-require('../helpers/metrics');
+// require('../helpers/metrics');
 
 module.exports = View.extend({
-  template: require('../templates/body.hbs'),
+  template: require('./templates/body.hbs'),
   initialize: function () {
     // this marks the correct nav item selected
     this.listenTo(app.router, 'page', this.handleNewPage);
@@ -24,7 +24,7 @@ module.exports = View.extend({
   },
   render: function () {
     // some additional stuff we want to add to the document head
-    document.head.appendChild(domify(require('../templates/head.hbs')()));
+    document.head.appendChild(domify(require('./templates/head.hbs')()));
 
     // main renderer
     this.renderWithTemplate({ me: me });

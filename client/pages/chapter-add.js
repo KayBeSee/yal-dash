@@ -4,7 +4,7 @@ var PersonForm = require('../forms/person');
 
 module.exports = PageView.extend({
   pageTitle: 'add person',
-  template: require('../templates/pages/personAdd.hbs'),
+  template: require('../templates/pages/chapter-add.hbs'),
   subviews: {
     form: {
       container: 'form',

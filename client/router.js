@@ -1,22 +1,38 @@
 /*global me, app*/
 var Router = require('ampersand-router');
 var HomePage = require('./pages/home');
-var CollectionDemo = require('./pages/collection-demo');
 var InfoPage = require('./pages/info');
-var PersonAddPage = require('./pages/person-add');
-var PersonEditPage = require('./pages/person-edit');
-var PersonViewPage = require('./pages/person-view');
+var ChaptersPage = require('./pages/chapters');
+var ChapterViewPage = require('./pages/chapter');
+var ChapterEditPage = require('./pages/chapter-edit');
+var ChapterAddPage = require('./pages/chapter-add');
 
 
 module.exports = Router.extend({
   routes: {
-    ''                : 'home',
-    'collections'     : 'collectionDemo',
-    'info'            : 'info',
-    'person/add'      : 'personAdd',
-    'person/:id'      : 'personView',
-    'person/:id/edit' : 'personEdit',
-    '(*path)'         : 'catchAll'
+    ''                          : 'home',
+    'info'                      : 'info',
+    'chapters'                  : 'chapters',
+    'chapters/:id'              : 'chapterView',
+    'chapters/:id/edit'         : 'chapterEdit',
+    'chapters/add'              : 'chapterAdd',
+    // 'activism_events'           : 'activism_events',
+    // 'activism_events/:id'       : 'activism_eventView',
+    // 'activism_events/:id/edit'  : 'activism_eventEdit',
+    // 'activism_events/add'       : 'activism_eventAdd',
+    // 'students'                  : 'students',
+    // 'students/:id'              : 'studentView',
+    // 'students/:id/edit'         : 'studentEdit',
+    // 'students/add'              : 'studentAdd',
+    // 'users'                     : 'users',
+    // 'users/:id'                 : 'userView',
+    // 'users/:id/edit'            : 'userEdit',
+    // 'users/add'                 : 'userAdd',
+    // 'notes'                     : 'notes',
+    // 'notes/:id'                 : 'noteView',
+    // 'notes/:id/edit'            : 'noteEdit',
+    // 'notes/add'                 : 'noteAdd',
+    '(*path)'                   : 'catchAll'
   },
 
   // ------- ROUTE HANDLERS ---------
@@ -26,31 +42,31 @@ module.exports = Router.extend({
     }));
   },
 
-  collectionDemo: function () {
-    this.trigger('page', new CollectionDemo({
-      model: me,
-      collection: app.people
-    }));
-  },
-
   info: function () {
     this.trigger('page', new InfoPage({
       model: me
     }));
   },
 
-  personAdd: function () {
-    this.trigger('page', new PersonAddPage());
+  chapters: function () {
+    this.trigger('page', new ChaptersPage({
+      model: me,
+      collection: app.chapters
+    }));
   },
 
-  personEdit: function (id) {
-    this.trigger('page', new PersonEditPage({
+  chapterAdd: function () {
+    this.trigger('page', new ChapterAddPage());
+  },
+
+  chapterEdit: function (id) {
+    this.trigger('page', new ChapterEditPage({
       id: id
     }));
   },
 
-  personView: function (id) {
-    this.trigger('page', new PersonViewPage({
+  chapterView: function (id) {
+    this.trigger('page', new ChapterViewPage({
       id: id
     }));
   },

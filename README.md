@@ -1,24 +1,13 @@
-# Ampersand test app.
+# YAL Dashboard
 
-This app was generated with the [ampersand cli tool](http://ampersandjs.com/learn/quick-start-guide).
+## A better way to manage YAL's network.
 
-## How to run it
+Created by [Kevin Mulcrone] using [Node.js], [AmpersandJS], and [MongoDB].
 
-1. download/install [node.js](http://nodejs.org/)
-1. install dependencies: `npm install`
-1. run it: `npm start`
-1. open http://localhost:3000 in a browser
+"I have always believed that technology should do the hard work - discovery, organization, communication - so users can do what makes them happiest: living and loving, not messing with annoying computers!" - Larry Page
 
-## How it's structured
+[Kevin Mulcrone]: <http://KayBeSee.com>
+[Node.js]: <https://nodejs.org/en/>
+[AmpersandJS]: <http://ampersandjs.com>
+[MongoDB]: <https://www.mongodb.org/>
 
-See docs: http://ampersandjs.com/
-Curated modules: http://tools.ampersandjs.com/
-
-## Credits
-
-Built by folks at [&yet](http://andyet.com).
-
-## Want a deeper understanding?
-
-Get the book: http://humanjavascript.com
-# yal-dash

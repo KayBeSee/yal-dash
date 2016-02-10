@@ -11,6 +11,8 @@ var semiStatic   = require('semi-static');
 var serveStatic  = require('serve-static');
 var stylizer     = require('stylizer');
 
+var mongoose     = require('mongoose');
+
 var app          = express();
 
 // a little helper for fixing paths for various environments
@@ -31,8 +33,14 @@ if (config.isDev) {
 }
 
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+
+app.post('/api/poop', function (req, res) {
+  console.log('req', req);
+  res.send('nice');
+});
 
 // in order to test this with spacemonkey we need frames
 if (!config.isDev) {
@@ -42,17 +50,6 @@ app.use(helmet.xssFilter());
 app.use(helmet.nosniff());
 
 app.set('view engine', 'jade');
-
-
-// -----------------
-// Set up our little demo API
-// -----------------
-var api = require('./fakeApi');
-app.get('/api/people', api.list);
-app.get('/api/people/:id', api.get);
-app.delete('/api/people/:id', api.delete);
-app.put('/api/people/:id', api.update);
-app.post('/api/people', api.add);
 
 
 // -----------------
@@ -73,6 +70,11 @@ app.use(function (req, res, next) {
   res.cookie('config', JSON.stringify(config.client));
   next();
 });
+
+mongoose.connect(config.mongo.url);
+
+
+require('./server/routes')(app);
 
 
 // ---------------------------------------------------
@@ -113,4 +115,6 @@ new Moonboots({
 
 
 // listen for incoming http requests on the port as specified in our config
-app.listen(config.http.port);
+app.listen(config.http.port, function(){
+  console.log('Application running on port ' + config.http.port);
+});

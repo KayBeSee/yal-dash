@@ -1,6 +1,6 @@
 {
-  "name": "ampersand-test-app",
-  "author": "Matt Hernandez <matt@modulus.io>",
+  "name": "yal-dash",
+  "author": "Kevin Mulcrone <kaybesee@gmail.com>",
   "version": "0.0.0",
   "main": "server.js",
   "dependencies": {

@@ -3,16 +3,11 @@ var PageView = require('./base');
 
 module.exports = PageView.extend({
   pageTitle: 'view person',
-  template: require('../templates/pages/personView.hbs'),
+  template: require('../templates/pages/chapter.hbs'),
   bindings: {
-    'model.fullName': {
-      hook: 'name'
-    },
-    'model.avatar': {
-      type: 'attribute',
-      hook: 'avatar',
-      name: 'src'
-    },
+    'model.school_name': ['data-hook=school_namae'],
+    'model.city': ['data-hook=city'],
+    'model.state': ['data-hook=state'],
     'model.editUrl': {
       type: 'attribute',
       hook: 'edit',
@@ -24,7 +19,7 @@ module.exports = PageView.extend({
   },
   initialize: function (spec) {
     var self = this;
-    app.people.getOrFetch(spec.id, {all: true}, function (err, model) {
+    app.chapters.getOrFetch(spec.id, {all: true}, function (err, model) {
       if (err) alert('couldnt find a model with id: ' + spec.id);
       self.model = model;
     });
