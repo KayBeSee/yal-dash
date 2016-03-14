@@ -2,27 +2,55 @@ var Note = require('../models/note.js');
 
 // Get Commands
 exports.getAll = function(done) {
-  Note.find({ }, function (err, notes) {
+  Note.find({ }).populate('user parent.item').exec( function (err, notes) {
     if (err) return done(err, null);
     done(null, notes);
   });
 }
 
 exports.getById = function(id, done) {
-  Note.findById({'_id' : id }, function (err, note) {
+  Note.findById({'_id' : id }).populate('user parent.item').exec( function (err, note) {
     if (err) return done(err, null);
     done(null, note);
   });
 }
 
+exports.getByChapter = function(id, done) {
+  Note.find({'parent.kind':'Chapter', 'parent.item':id }).populate('user parent.item').exec( function (err, notes) {
+    if (err) return done(err, null);
+    done(null, notes);
+  });
+}
+
+exports.getByActivismEvent = function(id, done) {
+  ActivismEvent.find({'parent.item': id}).populate('user parent.item').exec( function (err, activism_events){
+    done(null, activism_events);
+  });
+}
+
+exports.getByUser = function(id, done) {
+  Note.find({'user':id }).populate('user parent.item').exec( function (err, notes) {
+    if (err) return done(err, null);
+    done(null, notes);
+  });
+}
+
+exports.getByChapter = function(id, done) {
+  Note.find({'parent.kind':'Chapter', 'parent.item':id }).populate('user parent.item').exec( function (err, notes) {
+    if (err) return done(err, null);
+    done(null, notes);
+  });
+}
 
 // Post Commands
 exports.addNew = function(note, done) {
   console.log('note', note);
   var newNote = new Note({
-    user_id: note.user_id,
-    parent_id: note.parent_id,
-    parent_type: note.parent_type,
+    user: note.user,
+    parent: {
+      item: note.parent.item,
+      kind: note.parent.kind,
+    },
     date_created: Date.now(),
     date_modified: Date.now(),
     message: note.message
@@ -35,6 +63,7 @@ exports.addNew = function(note, done) {
 
 // Put Commands
 exports.updateById = function(id, updatedNote, done) {
+  updatedNote.date_modified = Date.now();
   Note.findByIdAndUpdate(id, updatedNote, function (err, note) {
     if (err) return done(err, null);
     done(null, note);

@@ -1,13 +1,13 @@
 /* global app, alert */
 var PageView = require('./base');
-var ChapterForm = require('../forms/chapter');
+var ActivismEventForm = require('../forms/activism_event');
 
 module.exports = PageView.extend({
-  pageTitle: 'edit chapter',
-  template: require('../templates/pages/chapter-edit.hbs'),
+  pageTitle: 'edit activism event',
+  template: require('../templates/pages/activism_event-edit.hbs'),
   initialize: function (spec) {
     var self = this;
-    app.chapters.getOrFetch(spec.id, {all: true}, function (err, model) {
+    app.activism_events.getOrFetch(spec.id, {all: true}, function (err, model) {
       if (err) alert('couldnt find a model with id: ' + spec.id);
       self.model = model;
     });
@@ -21,14 +21,14 @@ module.exports = PageView.extend({
       waitFor: 'model',
       prepareView: function (el) {
         var model = this.model;
-        return new ChapterForm({
+        return new ActivismEventForm({
           el: el,
           model: this.model,
           submitCallback: function (data) {
             model.save(data, {
               wait: true,
               success: function () {
-                app.navigate('/chapters');
+                app.navigate('/activism_events');
               }
             });
           }

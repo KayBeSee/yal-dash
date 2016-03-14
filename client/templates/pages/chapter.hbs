@@ -1,8 +1,64 @@
-<section class="page view-person">
-  <h2 data-hook="school_name"></h2>
-  <span data-hook="city"></span>,<span data-hook="state"></span>
-  <div class="buttons">
-    <a class="btn" data-hook="edit">Edit</a>
-    <button type="button" class="btn" data-hook="delete">Delete</button>
+<section class="page view-chapter">
+  <div class="row">
+    <div class="col-md-10">
+      <h2><span data-hook="school_name"></span>
+      <small><span data-hook="city"></span>,<span data-hook="state"></span></small></h2>
+      <span data-hook="tier"></span> - <span data-hook="status"></span>
+      </div>
+    <div class="col-md-2">
+      <div class="buttons">
+        <a class="btn btn-default" data-hook="action-edit">Edit Chapter Information</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Chapter Information</h3>
+      Date Created: <span data-hook="date_created"></span><br />
+      Last Updated: <span data-hook="date_modified"></span><br />
+      Reply Date: <span data-hook="reply_date"></span><br />
+      Referral: <span data-hook="referral"></span><br />
+      State Chair: <span data-hook="state_chair_assigned"></span><br />
+      Facebook: <span data-hook="chapter_facebook_url"></span><br />
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <h3>President Information</h3>
+        Name: <span data-hook="president.first_name"></span> <span data-hook="president.last_name"></span><br />
+        Email: <span data-hook="president.email"></span><br />
+        Phone: <span data-hook="president.phone"></span><br />
+        Address: <span data-hook="president.street_1"></span><br />
+                 <span data-hook="president.street_2"></span><br />
+                 <span data-hook="president.city"></span>, <span data-hook="president.state"></span> <span data-hook="president.zipcode"></span><br />
+        Facebook: <span data-hook="president.facebook_url"></span><br />
+      </div>
+      <div class="row">
+        <h3>Free Speech Info</h3>
+        free_speech.rating: <span data-hook="free_speech.rating"></span><br />
+        free_speech.zone: <span data-hook="free_speech.zone"></span><br />
+        free_speech.target: <span data-hook="free_speech.target"></span><br />
+        free_speech.status: <span data-hook="free_speech.status"></span><br />
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+  <div class="row">
+    <div class="col-md-12">
+      <form data-hook="note_form">
+        <fieldset data-hook="field-container">
+        </fieldset>
+        <div class="buttons">
+          <button type="submit" class="btn btn-block btn-primary" data-hook="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-12 notes">
+      <div data-hook="notes"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div data-hook="activism_events"></div>
   </div>
 </section>

@@ -25,6 +25,20 @@ module.exports = {
     // create our global 'me' object and an empty collection for our people
     // models.
     window.me = new Me();
+
+    // for development purposes. Remove once user login functionality is implemented.
+    window.me._id = "56e5f0fe9c82097604be21ff";
+    window.me.first_name = 'Kevin';
+    window.me.last_name = 'Mulcrone';
+    window.me.phone = 7088059743;
+    window.me.email = 'KayBeSee@gmail.com';
+    window.me.facebook_url = 'http://facebook.com/kaybesee';
+    window.me.date_created = new Date('1/2/1967');
+    window.me.picture_url = 'https://scontent.xx.fbcdn.net/hphotos-xtp1/t31.0-8/12829311_10207220825471340_897303930952526274_o.jpg';
+    window.me.region = 'Midwest';
+    window.me.role = 'State Chair';
+
+
     this.chapters = new Chapters();
     this.activism_events = new Activism_Events();
     this.notes = new Notes();

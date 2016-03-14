@@ -6,6 +6,10 @@ var ChaptersPage = require('./pages/chapters');
 var ChapterViewPage = require('./pages/chapter');
 var ChapterEditPage = require('./pages/chapter-edit');
 var ChapterAddPage = require('./pages/chapter-add');
+var ActivismEventsPage = require('./pages/activism_events');
+var ActivismEventViewPage = require('./pages/activism_event');
+var ActivismEventEditPage = require('./pages/activism_event-edit');
+var ActivismEventAddPage = require('./pages/activism_event-add');
 
 
 module.exports = Router.extend({
@@ -15,11 +19,11 @@ module.exports = Router.extend({
     'chapters'                  : 'chapters',
     'chapters/:id'              : 'chapterView',
     'chapters/:id/edit'         : 'chapterEdit',
-    'chapters/add'              : 'chapterAdd',
-    // 'activism_events'           : 'activism_events',
-    // 'activism_events/:id'       : 'activism_eventView',
-    // 'activism_events/:id/edit'  : 'activism_eventEdit',
-    // 'activism_events/add'       : 'activism_eventAdd',
+    'chapter/add'               : 'chapterAdd',
+    'activism_events'           : 'activism_events',
+    'activism_events/:id'       : 'activism_eventView',
+    'activism_events/:id/edit'  : 'activism_eventEdit',
+    'activism_event/add'        : 'activism_eventAdd',
     // 'students'                  : 'students',
     // 'students/:id'              : 'studentView',
     // 'students/:id/edit'         : 'studentEdit',
@@ -67,6 +71,29 @@ module.exports = Router.extend({
 
   chapterView: function (id) {
     this.trigger('page', new ChapterViewPage({
+      id: id
+    }));
+  },
+
+  activism_events: function () {
+    this.trigger('page', new ActivismEventsPage({
+      model: me,
+      collection: app.activism_events
+    }));
+  },
+
+  activism_eventAdd: function () {
+    this.trigger('page', new ActivismEventAddPage());
+  },
+
+  activism_eventEdit: function (id) {
+    this.trigger('page', new ActivismEventEditPage({
+      id: id
+    }));
+  },
+
+  activism_eventView: function (id) {
+    this.trigger('page', new ActivismEventViewPage({
       id: id
     }));
   },

@@ -1,20 +1,11 @@
-<section class="page edit-person">
-  <h2>Edit Chapter</h2>
+<section class="page edit-chapter">
+  <h2>Edit Chapter <button data-hook="delete" type="delete" class="btn btn-danger">Delete</button></h2>
 
-  <p>
-    This form and all behavior is defined by the form view in
-    <code>client/forms/person.js</code>.
-  </p>
-
-  <p>
-    The same form-view is used for both editing and creating new users.
-  </p>
-
-  <form data-hook="person-form">
+  <form data-hook="chapter-form" class="form-horizontal">
     <fieldset data-hook="field-container">
-      <div class="buttons">
-        <button type="submit" class="btn" data-hook="reset">Submit</button>
-      </div>
     </fieldset>
+    <div class="buttons" style="margin-top: 25px; margin-bottom: 25px">
+      <button type="submit" class="btn btn-primary btn-block" data-hook="submit">Submit Changes</button>
+    </div>
   </form>
 </section>

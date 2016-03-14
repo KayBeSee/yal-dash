@@ -3,6 +3,7 @@ var activism_event = require('./activism_event');
 
 
 module.exports = AmpCollection.extend({
-    model: activism_event,
-    url: '/api/activism'
+  mainIndex: '_id',
+  model: activism_event,
+  url: '/api/activism'
 });

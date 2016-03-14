@@ -1,27 +1,32 @@
 /*global app*/
 var PageView = require('./base');
-var PersonForm = require('../forms/person');
+var ChapterForm = require('../forms/chapter');
+var ChapterModel = require('../models/chapter');
 
 module.exports = PageView.extend({
-  pageTitle: 'add person',
+  pageTitle: 'add chapter',
   template: require('../templates/pages/chapter-add.hbs'),
   subviews: {
     form: {
       container: 'form',
       prepareView: function (el) {
-        return new PersonForm({
+        return new ChapterForm({
           el: el,
           submitCallback: function (data) {
-            app.people.create(data, {
+            app.chapters.create(data, {
               wait: true,
               success: function () {
-                app.navigate('/collections');
-                app.people.fetch();
+                app.navigate('/chapters');
+                app.chapters.fetch();
               }
             });
           }
         });
       }
     }
+  },
+  initialize: function() {
+    var self = this;
+    this.model = new ChapterModel();
   }
 });

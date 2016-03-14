@@ -1,0 +1,41 @@
+<section class="page view-chapter">
+  <div class="row">
+    <div class="col-md-10">
+      <h2><span data-hook="school_name"></span>
+      <small><span data-hook="city"></span>,<span data-hook="state"></span></small></h2>
+      </div>
+    <div class="col-md-2">
+      <div class="buttons">
+        <a class="btn" data-hook="action-edit">Edit</a>
+        <button type="button" class="btn" data-hook="delete">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      school: <span data-hook="school_name"></span>
+      school city: <span data-hook="school_city"></span>
+      school state: <span data-hook="school_state"></span>
+      school region: <span data-hook="school_region"></span>
+      state chair: <span data-hook="school_state_chair"></span>
+      date_created: <span data-hook="date_created"></span>
+      date_modified: <span data-hook="date_modified"></span>
+      type: <span data-hook="type"></span>
+      status: <span data-hook="status"></span>
+      blog_post_url: <span data-hook="blog_post_url"></span>
+    </div>
+  </div>
+
+  <div class="row">
+    <form data-hook="note_form">
+      <fieldset data-hook="field-container">
+      </fieldset>
+      <div class="buttons">
+        <button type="submit" class="button small" data-hook="submit">Submit</button>
+      </div>
+    </form>
+    <div data-hook="notes"></div>
+  </div>
+
+</section>

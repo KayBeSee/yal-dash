@@ -1,3 +1,11 @@
 body {
   background: #fff;
 }
+.chapter-form label {
+  display: block;
+  text-align: center;
+}
+.clear {
+  height: 50px;
+  display: block;
+}

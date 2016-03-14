@@ -47,8 +47,8 @@ exports.addNew = function(chapter, done) {
   region: chapter.region,
   status: chapter.status,
   tier: chapter.tier,
-  date_created: chapter.date_created,
-  date_modified: chapter.date_modified,
+  date_created: Date.now(),
+  date_modified: Date.now(),
   reply_date: chapter.reply_date,
   referral: chapter.referral,
   state_chair_assigned: chapter.state_chair_assigned,
@@ -80,6 +80,7 @@ exports.addNew = function(chapter, done) {
 
 // Put Commands
 exports.updateById = function(id, updatedChapter, done) {
+  updatedChapter.date_modified = Date.now();
   Chapter.findByIdAndUpdate(id, updatedChapter, function (err, chapter) {
     if (err) return done(err, null);
     done(null, chapter);

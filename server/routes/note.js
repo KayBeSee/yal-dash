@@ -9,8 +9,20 @@ module.exports = function(app) {
     });
   });
 
+  app.get('/api/notes/:id', function(req, res){
+    NotesController.getById(req.params.id, function(err, notes){
+      res.send(notes);
+    });
+  });
+
   app.get('/api/notes/chapter/:id', function(req, res){
     NotesController.getByChapter(req.params.id, function(err, notes){
+      res.send(notes);
+    });
+  });
+
+  app.get('/api/notes/activism_event/:id', function(req, res){
+    NotesController.getByActivismEvent(req.params.id, function(err, notes){
       res.send(notes);
     });
   });

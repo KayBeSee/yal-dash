@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "main": "server.js",
   "dependencies": {
+    "ampersand-checkbox-view": "^4.1.0",
     "ampersand-dom": "^1.2.1",
     "ampersand-form-view": "^5.2.0",
     "ampersand-input-view": "^5.0.0",

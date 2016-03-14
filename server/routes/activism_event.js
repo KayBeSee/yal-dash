@@ -15,6 +15,12 @@ module.exports = function(app) {
     });
   });
 
+  app.get('/api/activism/chapter/:id', function (req, res) {
+    ActivismEventController.getByChapter( req.params.id, function (err, events) {
+      res.send(events);
+    });
+  });
+
   app.get('/api/activism/state/:state', function (req, res) {
     ActivismEventController.getByState( req.params.state, function (err, events) {
       res.send(events);
