@@ -9,3 +9,12 @@ body {
   height: 50px;
   display: block;
 }
+.note-metadata {
+  color: #b1bbc3;
+  font-size: 13px;
+}
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}

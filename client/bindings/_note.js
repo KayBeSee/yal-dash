@@ -2,14 +2,38 @@ module.exports = {
   'model._id': {
     hook: '_id'
   },
-  'model.user_id': {
-    hook: 'user_id'
+  'model.user.first_name': {
+    hook: 'user_first_name'
   },
-  'model.parent_id': {
-    hook: 'parent_id'
+  'model.user.last_name': {
+    hook: 'user_last_name'
   },
-  'model.parent_type': {
-    hook: 'parent_type'
+  'model.user.phone': {
+    hook: 'user_phone'
+  },
+  'model.user.email': {
+    hook: 'user_email'
+  },
+  'model.user.facebook_url': {
+    hook: 'user_facebook_url'
+  },
+  'model.user.picture_url': {
+    type: 'attribute',
+    name: 'src',
+    hook: 'user_picture_url'
+  },
+
+  'model.user.region': {
+    hook: 'user_region'
+  },
+  'model.user.role': {
+    hook: 'user_role'
+  },
+  'model.parent.item.school_name': {
+    hook: 'parent_school_name'
+  },
+  'model.parent.item.state': {
+    hook: 'parent_state'
   },
   'model.date_created': {
     hook: 'date_created'
@@ -20,14 +44,22 @@ module.exports = {
   'model.message': {
     hook: 'message'
   },
+  'model.prettyDateCreated': {
+    hook: 'prettyDateCreated'
+  },
   'model.viewUrl': {
     type: 'attribute',
     hook: 'action-view',
     name: 'href'
   },
-  'model.editUrl': {
+  // 'model.editUrl': {
+  //   type: 'attribute',
+  //   hook: 'action-edit',
+  //   name: 'href'
+  // },
+  'model._id': {
+    hook: 'note_identifier',
     type: 'attribute',
-    hook: 'action-edit',
-    name: 'href'
-  }
+    name: 'id'
+  },
 };

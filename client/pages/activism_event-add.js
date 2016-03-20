@@ -5,7 +5,7 @@ var ActivismEventModel = require('../models/activism_event');
 
 module.exports = PageView.extend({
   pageTitle: 'add activism event',
-  template: require('../templates/pages/activism_event-add.hbs'),
+  template: require('../templates/pages/activism_event-edit.hbs'),
   subviews: {
     form: {
       container: 'form',

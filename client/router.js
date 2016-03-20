@@ -2,6 +2,7 @@
 var Router = require('ampersand-router');
 var HomePage = require('./pages/home');
 var InfoPage = require('./pages/info');
+var NotesPage = require('./pages/notes');
 var ChaptersPage = require('./pages/chapters');
 var ChapterViewPage = require('./pages/chapter');
 var ChapterEditPage = require('./pages/chapter-edit');
@@ -16,6 +17,7 @@ module.exports = Router.extend({
   routes: {
     ''                          : 'home',
     'info'                      : 'info',
+    'notes'                     : 'notes',
     'chapters'                  : 'chapters',
     'chapters/:id'              : 'chapterView',
     'chapters/:id/edit'         : 'chapterEdit',
@@ -49,6 +51,13 @@ module.exports = Router.extend({
   info: function () {
     this.trigger('page', new InfoPage({
       model: me
+    }));
+  },
+
+  notes: function () {
+    this.trigger('page', new NotesPage({
+      model: me,
+      collection: app.notes
     }));
   },
 

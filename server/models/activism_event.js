@@ -7,6 +7,7 @@ var activism_event_schema = new Schema({
   chapter: {type: ObjectId, ref: 'Chapter'},
   date_created: Date,
   date_modified: Date,
+  date_executed: Date,
   type: String,
   status: String,
   blog_post_url: String

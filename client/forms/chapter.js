@@ -38,7 +38,7 @@ module.exports = FormView.extend({
         return [
             new InputView({
                 label: 'School Name',
-                name: 'schoolName',
+                name: 'school_name',
                 value: this.model && this.model.school_name,
                 required: false,
                 placeholder: 'School Name',
@@ -119,7 +119,7 @@ module.exports = FormView.extend({
             }),
             new InputView({
                 label: 'President First Name',
-                name: 'president_first_name',
+                name: 'president.first_name',
                 value: this.model && this.model.president.first_name,
                 required: false,
                 placeholder: 'President First Name',
@@ -128,7 +128,7 @@ module.exports = FormView.extend({
             }),
             new InputView({
                 label: 'President Last Name',
-                name: 'president_last_name',
+                name: 'president.last_name',
                 value: this.model && this.model.president.last_name,
                 required: false,
                 placeholder: 'President Last Name',
@@ -137,7 +137,7 @@ module.exports = FormView.extend({
             }),
             new InputView({
                 label: 'President Email',
-                name: 'president_email',
+                name: 'president.email',
                 value: this.model && this.model.president.email,
                 required: false,
                 placeholder: 'President Email',
@@ -146,7 +146,7 @@ module.exports = FormView.extend({
             }),
             new InputView({
                 label: 'President Phone Number',
-                name: 'president_phone_number',
+                name: 'president.phone',
                 value: this.model && this.model.president.phone,
                 required: false,
                 placeholder: 'President Phone Number',
@@ -155,7 +155,7 @@ module.exports = FormView.extend({
             }),
             new InputView({
                 label: 'Street 1',
-                name: 'street_1',
+                name: 'president.street_1',
                 value: this.model && this.model.president.street_1,
                 required: false,
                 placeholder: 'Street 1',
@@ -164,7 +164,7 @@ module.exports = FormView.extend({
             }),
             new InputView({
                 label: 'Street 2',
-                name: 'street_2',
+                name: 'president.street_2',
                 value: this.model && this.model.president.street_2,
                 required: false,
                 placeholder: 'Street 2',
@@ -173,7 +173,7 @@ module.exports = FormView.extend({
             }),
             new InputView({
                 label: 'City',
-                name: 'city',
+                name: 'president.city',
                 value: this.model && this.model.president.city,
                 required: false,
                 placeholder: 'City',
@@ -182,7 +182,7 @@ module.exports = FormView.extend({
             }),
             new InputView({
                 label: 'State',
-                name: 'state',
+                name: 'president.state',
                 value: this.model && this.model.president.state,
                 required: false,
                 placeholder: 'State',
@@ -191,7 +191,7 @@ module.exports = FormView.extend({
             }),
             new InputView({
                 label: 'Zipcode',
-                name: 'zipcode',
+                name: 'president.zipcode',
                 value: this.model && this.model.president.zipcode,
                 required: false,
                 placeholder: 'Zipcode',
@@ -200,7 +200,7 @@ module.exports = FormView.extend({
             }),
             new InputView({
                 label: 'Facebook Url',
-                name: 'facebook_url',
+                name: 'president.facebook_url',
                 value: this.model && this.model.president.facebook_url,
                 required: false,
                 placeholder: 'Facebook Url',
@@ -209,7 +209,7 @@ module.exports = FormView.extend({
             }),
             new InputView({
                 label: 'Free Speech Rating',
-                name: 'free_speech_rating',
+                name: 'free_speech.rating',
                 value: this.model && this.model.free_speech.rating,
                 required: false,
                 placeholder: 'Free Speech Rating',
@@ -218,21 +218,21 @@ module.exports = FormView.extend({
             }),
             new CheckboxView({
                 label: 'Free Speech Zone',
-                name: 'free_speech_zone',
+                name: 'free_speech.zone',
                 value: this.model && this.model.free_speech.zone,
                 parent: this,
                 template: FreeSpeechInfoInput
             }),
             new CheckboxView({
                 label: 'Free Speech Target',
-                name: 'free_speech_target',
+                name: 'free_speech.target',
                 value: this.model && this.model.free_speech.target,
                 parent: this,
                 template: FreeSpeechInfoInput
             }),
             new InputView({
                 label: 'Free Speech Status',
-                name: 'free_speech_status',
+                name: 'free_speech.status',
                 value: this.model && this.model.free_speech.status,
                 required: false,
                 placeholder: 'Free Speech Status',

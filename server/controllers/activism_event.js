@@ -58,7 +58,8 @@ exports.addNew = function(event, done) {
     status: event.status,
     blog_post_url: event.blog_post_url,
     date_created: Date.now(),
-    date_modified: event.date_modified
+    date_modified: Date.now(),
+    date_executed: event.date_executed
   });
   newActivismEvent.save( function (err, event) {
     if (err) done(err, null);

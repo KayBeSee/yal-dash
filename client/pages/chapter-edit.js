@@ -5,12 +5,25 @@ var ChapterForm = require('../forms/chapter');
 module.exports = PageView.extend({
   pageTitle: 'edit chapter',
   template: require('../templates/pages/chapter-edit.hbs'),
+  events: {
+    'click [data-hook=action-delete]': 'handleDeleteClick'
+  },
   initialize: function (spec) {
     var self = this;
     app.chapters.getOrFetch(spec.id, {all: true}, function (err, model) {
       if (err) alert('couldnt find a model with id: ' + spec.id);
       self.model = model;
     });
+  },
+  handleDeleteClick: function () {
+    var deleteKey = prompt('Please type in your last name to confirm note deletion.', '');
+    if(deleteKey == window.me.last_name){
+      this.model.destroy({success: function () {
+        app.navigate('chapters');
+      }});
+      return false;
+    }
+    return false;
   },
   subviews: {
     form: {

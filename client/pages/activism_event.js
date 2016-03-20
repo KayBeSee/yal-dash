@@ -13,7 +13,8 @@ module.exports = PageView.extend({
   template: require('../templates/pages/activism_event.hbs'),
   bindings: activism_event_bindings,
   events: {
-    'click [data-hook~=delete]': 'handleDeleteClick'
+    'click [data-hook~=delete]': 'handleDeleteClick',
+    'click [data-hook=action-view-chapter]': 'viewChapter'
   },
   subviews: {
     Notes: {
@@ -57,9 +58,12 @@ module.exports = PageView.extend({
       console.log('spec.id', spec.id);
       if (err) alert('couldnt find a model with id: ' + spec.id);
       self.model = model;
-      self.collection.url = '/api/notes/activism/' + spec.id;
+      self.collection.url = '/api/notes/activism_event/' + spec.id;
       self.collection.fetch();
     });
+  },
+  viewChapter: function () {
+    app.navigate('chapters/' + this.model.chapter._id);
   },
   handleDeleteClick: function () {
     this.model.destroy({success: function () {

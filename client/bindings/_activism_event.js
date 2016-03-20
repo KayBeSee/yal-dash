@@ -23,6 +23,9 @@ module.exports = {
   'model.date_modified': {
     hook: 'date_modified'
   },
+  'model.date_executed': {
+    hook: 'date_executed'
+  },
   'model.type': {
     hook: 'type'
   },

@@ -2,7 +2,7 @@ var Note = require('../models/note.js');
 
 // Get Commands
 exports.getAll = function(done) {
-  Note.find({ }).populate('user parent.item').exec( function (err, notes) {
+  Note.find({ }).populate({path: 'user parent.item', populate: {path:'parent'}}).exec( function (err, notes) {
     if (err) return done(err, null);
     done(null, notes);
   });
@@ -23,7 +23,7 @@ exports.getByChapter = function(id, done) {
 }
 
 exports.getByActivismEvent = function(id, done) {
-  ActivismEvent.find({'parent.item': id}).populate('user parent.item').exec( function (err, activism_events){
+  Note.find({'parent.item': id}).populate('user parent.item').exec( function (err, activism_events){
     done(null, activism_events);
   });
 }

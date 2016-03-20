@@ -3,6 +3,7 @@ var AmpModel = require('ampersand-model');
 
 
 module.exports = AmpModel.extend({
+  idAttribute: '_id',
   props: {
     _id: ['string'],
     chapter: {
@@ -40,6 +41,7 @@ module.exports = AmpModel.extend({
     },
     date_created: ['date'],
     date_modified: ['date'],
+    date_executed: ['date'],
     type: ['string'],
     status: ['string'],
     blog_post_url: ['string']

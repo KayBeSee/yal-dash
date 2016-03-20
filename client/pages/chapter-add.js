@@ -5,7 +5,7 @@ var ChapterModel = require('../models/chapter');
 
 module.exports = PageView.extend({
   pageTitle: 'add chapter',
-  template: require('../templates/pages/chapter-add.hbs'),
+  template: require('../templates/pages/chapter-edit.hbs'),
   subviews: {
     form: {
       container: 'form',
@@ -13,6 +13,8 @@ module.exports = PageView.extend({
         return new ChapterForm({
           el: el,
           submitCallback: function (data) {
+            console.log('data:');
+            console.log(data);
             app.chapters.create(data, {
               wait: true,
               success: function () {
@@ -28,5 +30,6 @@ module.exports = PageView.extend({
   initialize: function() {
     var self = this;
     this.model = new ChapterModel();
+    console.log(this.model);
   }
 });

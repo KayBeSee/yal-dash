@@ -1,38 +1,42 @@
 <section class="page view-chapter">
   <div class="row">
     <div class="col-md-10">
-      <h2><span data-hook="school_name"></span>
-      <small><span data-hook="city"></span>,<span data-hook="state"></span></small></h2>
+      <h2><span data-hook="type"></span>
+      <small><span data-hook="school_name"></span></small></h2>
       </div>
     <div class="col-md-2">
       <div class="buttons">
-        <a class="btn" data-hook="action-edit">Edit</a>
-        <button type="button" class="btn" data-hook="delete">Delete</button>
+        <a class="btn btn-default" data-hook="action-view-chapter">View Chapter</a>
+        <a class="btn btn-default" data-hook="action-edit">Edit Activism Information</a>
       </div>
     </div>
   </div>
 
   <div class="row">
     <div class="col-md-6">
-      school: <span data-hook="school_name"></span>
-      school city: <span data-hook="school_city"></span>
-      school state: <span data-hook="school_state"></span>
-      school region: <span data-hook="school_region"></span>
-      state chair: <span data-hook="school_state_chair"></span>
-      date_created: <span data-hook="date_created"></span>
-      date_modified: <span data-hook="date_modified"></span>
-      type: <span data-hook="type"></span>
-      status: <span data-hook="status"></span>
-      blog_post_url: <span data-hook="blog_post_url"></span>
+      Type: <span data-hook="type"></span> <br />
+      Status: <span data-hook="status"></span> <br />
+      Blog Post Url: <span data-hook="blog_post_url"></span> <br />
+      Date Executed: <span data-hook="date_executed"></span><br />
+      Date Created: <span data-hook="date_created"></span> <br />
+      Date Modified: <span data-hook="date_modified"></span> <br />
+    </div>
+    <div class="col-md-6">
+      <h3>School Information</h3>
+      School: <span data-hook="school_name"></span> <br />
+      School City: <span data-hook="school_city"></span> <br />
+      School State: <span data-hook="school_state"></span> <br />
+      School Region: <span data-hook="school_region"></span> <br />
+      State Chair: <span data-hook="school_state_chair"></span> <br />
     </div>
   </div>
-
+  <div class="clear"></div>
   <div class="row">
     <form data-hook="note_form">
       <fieldset data-hook="field-container">
       </fieldset>
       <div class="buttons">
-        <button type="submit" class="button small" data-hook="submit">Submit</button>
+        <button type="submit" class="btn btn-block btn-primary" data-hook="submit">Submit</button>
       </div>
     </form>
     <div data-hook="notes"></div>
