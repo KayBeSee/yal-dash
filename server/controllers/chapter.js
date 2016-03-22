@@ -15,6 +15,13 @@ exports.getById = function(id, done) {
   });
 }
 
+exports.searchByName = function(term, done){
+  Chapter.find({ school_name: {$regex : "^" + term}}, function(err, chapters){
+    if (err) done(err, null);
+    done(null, chapters);
+  });
+}
+
 exports.getByState = function(state, done) {
   Chapter.find({'state' : state }, function (err, chapters) {
     if (err) return done(err, null);

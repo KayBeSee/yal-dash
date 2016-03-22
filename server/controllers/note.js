@@ -1,4 +1,6 @@
 var Note = require('../models/note.js');
+var mongoose = require('mongoose');
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
 
 // Get Commands
 exports.getAll = function(done) {

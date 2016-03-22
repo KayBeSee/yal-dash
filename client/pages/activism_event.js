@@ -45,6 +45,7 @@ module.exports = PageView.extend({
             this.model.parent.kind = 'ActivismEvent';
             this.model.message = obj.message;
             this.parent.collection.create(this.model);
+            this.router.reload();
           }
         });
       },

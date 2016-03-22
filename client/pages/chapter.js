@@ -56,7 +56,7 @@ module.exports = PageView.extend({
             this.model.parent.kind = 'Chapter';
             this.model.message = obj.message;
             this.parent.notes.create(this.model);
-            // in order for user and chapter information to populate.
+            // in order for user and chapter information to populate on submit.
             app.router.reload();
           }
         });

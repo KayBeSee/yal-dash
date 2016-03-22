@@ -13,6 +13,7 @@ module.exports = PageView.extend({
         return new ActivismEventForm({
           el: el,
           submitCallback: function (data) {
+            console.log('data', data);
             app.activism_events.create(data, {
               wait: true,
               success: function () {

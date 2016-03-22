@@ -4,9 +4,17 @@ module.exports = function(app) {
 
   // Get Routes
   app.get('/api/chapters', function (req, res) {
-    ChapterController.getAll( function (err, chapters) {
+    console.log(req);
+    if(req.query.school_name){
+      ChapterController.searchByName( req.query.school_name, function (err, chapters) {
+        res.send(chapters);
+      });
+    }
+    else {
+      ChapterController.getAll( function (err, chapters) {
       res.send(chapters);
     });
+    }
   });
 
   app.get('/api/chapters/:id', function (req, res) {
