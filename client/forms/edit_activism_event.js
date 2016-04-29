@@ -4,39 +4,37 @@ var SelectView = require('ampersand-select-view');
 var AutoCompleteView = require('../../kbc_autocomplete-view');
 var Chapters = require('../models/chapters');
 
+var TextInput = [
+        '<div class="form-group">',
+            '<span class="form-label" data-hook="label"></span>',
+            '<input class="form-input btn-block">',
+            '<div data-hook="message-container" class="message message-below message-error">',
+                '<p data-hook="message-text"></p>',
+            '</div>',
+        '</div>'
+    ].join('');
+
+var SelectInput = [
+        '<div class="form-group">',
+            '<span class="form-label" data-hook="label"></span>',
+            '<select></select>',
+            '<div data-hook="message-container" class="message message-below message-error">',
+                '<p data-hook="message-text"></p>',
+            '</div>',
+        '</div>'
+    ].join('');
 
 module.exports = FormView.extend({
     fields: function () {
         return [
-            new AutoCompleteView({
-                label: 'Chapter',
-                name: 'chapter',
-                collection: new Chapters(),
-                queryKey: 'school_name',
-                idAttribute: '_id',
-                textAttribute: '_id',
-                placeHolder: 'Type Chapter Name',
-                minKeywordLength: 3,
-                maxResults: 10,
-                value: this.model && this.model.chapter._id,
-                type: 'text',
-                parent: this
-            }),
-            // new InputView({
-            //     label: 'Chapter Id',
-            //     name: 'chapter',
-            //     value: this.model && this.model.chapter._id,
-            //     required: false,
-            //     placeholder: 'Chapter Id',
-            //     parent: this
-            // }),
             new InputView({
                 label: 'Date Executed',
                 name: 'date_executed',
                 value: this.model && this.model.date_executed,
                 required: false,
                 placeholder: 'Date Executed',
-                parent: this
+                parent: this,
+                template: TextInput
             }),
             new SelectView({
                 label: 'Type',
@@ -46,7 +44,8 @@ module.exports = FormView.extend({
                 unselectedText: 'Choose One',
                 required: false,
                 placeholder: 'Type',
-                parent: this
+                parent: this,
+                template: SelectInput
             }),
             new SelectView({
                 label: 'Status',
@@ -56,7 +55,8 @@ module.exports = FormView.extend({
                 unselectedText: 'Choose One',
                 required: false,
                 placeholder: 'Status',
-                parent: this
+                parent: this,
+                template: SelectInput
             }),
             new InputView({
                 label: 'Blog Post Url',
@@ -64,7 +64,8 @@ module.exports = FormView.extend({
                 value: this.model && this.model.blog_post_url,
                 required: false,
                 placeholder: 'Blog Post Url',
-                parent: this
+                parent: this,
+                template: TextInput
             })
         ];
     }

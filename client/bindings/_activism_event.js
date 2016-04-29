@@ -44,5 +44,14 @@ module.exports = {
     type: 'attribute',
     hook: 'action-edit',
     name: 'href'
+  },
+  'model.prettyDateCreated': {
+    hook: 'prettyDateCreated'
+  },
+  'model.prettyDateModified': {
+    hook: 'prettyDateModified'
+  },
+  'model.prettyDateExecuted': {
+    hook: 'prettyDateExecuted'
   }
 };

@@ -18,10 +18,11 @@ exports.getById = function(id, done) {
 // Post Commands
 exports.addNew = function(user, done) {
   var newUser = new User({
+  email: user.email,
+  password: user.password,
   first_name: user.first_name,
   last_name: user.last_name,
   phone: user.phone,
-  email: user.email,
   facebook_url: user.facebook_url,
   date_created: user.date_created,
   picture_url: user.picture_url,

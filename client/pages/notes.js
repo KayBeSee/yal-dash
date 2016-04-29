@@ -10,9 +10,7 @@ module.exports = PageView.extend({
   render: function () {
     this.renderWithTemplate();
     this.renderCollection(this.collection, NoteView, this.queryByHook('note-list'));
-    if (!this.collection.length) {
-      this.fetchCollection();
-    }
+    this.fetchCollection();
   },
   fetchCollection: function () {
     this.collection.fetch();

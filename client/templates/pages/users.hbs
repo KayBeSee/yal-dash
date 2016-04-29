@@ -1,0 +1,22 @@
+<section class="page pageOne">
+  <div class="row">
+    <div class="col-md-9">
+      <h2>Users</h2>
+      <p>This is a list of all the users within YAL's network.</p>
+      <p>You can view more detailed information about a user by clicking "view" on the right hand column.</p>
+      <p>To add a user, simply click "Add New User" in the top right corner of the screen and input necessary information</p>
+    </div>
+    <div class="col-md-3 text-right pull-right">
+       <a class="btn btn-default btn-md" href="/user/add">Add New User</a>
+    </div>
+  </div>
+  <table class="table table-striped">
+{{!--     <thead>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Actions</th>
+    </thead> --}}
+    <tbody data-hook="user-list"></tbody>
+  </table>
+</section>

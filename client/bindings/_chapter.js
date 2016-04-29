@@ -23,11 +23,20 @@ module.exports = {
   'model.date_created': {
     hook: 'date_created'
   },
+  'model.prettyDateCreated': {
+    hook: 'prettyDateCreated'
+  },
   'model.date_modified': {
     hook: 'date_modified'
   },
+  'model.prettyDateModified': {
+    hook: 'prettyDateModified'
+  },
   'model.reply_date': {
     hook: 'reply_date'
+  },
+  'model.prettyReplyDate': {
+    hook: 'prettyReplyDate'
   },
   'model.referral': {
     hook: 'referral'

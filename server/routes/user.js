@@ -1,7 +1,6 @@
 var UserController = require('../controllers/user');
 
 module.exports = function(app) {
-
   // Get Routes
   app.get('/api/users', function (req, res) {
     UserController.getAll( function (err, users) {
@@ -17,7 +16,7 @@ module.exports = function(app) {
 
   // Put Routes
   app.put('/api/users/:id', function (req, res) {
-    UserController.updateById( req.body.id, req.body, function (err, user) {
+    UserController.updateById( req.params.id, req.body, function (err, user) {
       res.send(user);
     });
   });

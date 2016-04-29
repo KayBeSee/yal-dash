@@ -32,6 +32,26 @@ var FreeSpeechInfoInput = [
         '</div>'
     ].join('');
 
+var CheckboxInput = [
+        '<div class="form-group">',
+            '<span class="form-label" data-hook="label"></span>',
+            '<input type="checkbox">',
+            '<div data-hook="message-container" class="message message-below message-error">',
+                '<p data-hook="message-text"></p>',
+            '</div>',
+        '</div>'
+    ].join('');
+
+var HiddenInput = [
+        '<div class="form-group hidden">',
+            '<span class="form-label" data-hook="label"></span>',
+            '<input class="form-input btn-block">',
+            '<div data-hook="message-container" class="message message-below message-error">',
+                '<p data-hook="message-text"></p>',
+            '</div>',
+        '</div>'
+    ].join('');
+
 
 module.exports = FormView.extend({
     fields: function () {
@@ -43,7 +63,7 @@ module.exports = FormView.extend({
                 required: false,
                 placeholder: 'School Name',
                 parent: this,
-                template: ChapterInfoInput
+                template: HiddenInput
             }),
             new InputView({
                 label: 'City',
@@ -221,14 +241,14 @@ module.exports = FormView.extend({
                 name: 'free_speech.zone',
                 value: this.model && this.model.free_speech.zone,
                 parent: this,
-                template: FreeSpeechInfoInput
+                template: CheckboxInput
             }),
             new CheckboxView({
                 label: 'Free Speech Target',
                 name: 'free_speech.target',
                 value: this.model && this.model.free_speech.target,
                 parent: this,
-                template: FreeSpeechInfoInput
+                template: CheckboxInput
             }),
             new InputView({
                 label: 'Free Speech Status',

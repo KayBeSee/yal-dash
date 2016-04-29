@@ -82,7 +82,7 @@ module.exports = PageView.extend({
   },
   handleDeleteClick: function () {
     this.model.destroy({success: function () {
-      app.navigate('notes');
+      app.router.reload();
     }});
   }
 });

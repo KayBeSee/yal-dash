@@ -3,6 +3,7 @@ var AmpModel = require('ampersand-model');
 
 
 module.exports = AmpModel.extend({
+  idAttribute: '_id',
   props: {
     first_name: ['string'],
     last_name: ['string'],

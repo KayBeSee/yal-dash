@@ -10,14 +10,28 @@ var _            = require('underscore');
 var domify       = require('domify');
 var dom          = require('ampersand-dom');
 var setFavicon   = require('favicon-setter');
+var LoginView    = require('./pages/login');
+var me_bindings  = require('./bindings/_me');
 
 // require('../helpers/metrics');
 
 module.exports = View.extend({
   template: require('./templates/body.hbs'),
+  bindings: me_bindings,
   initialize: function () {
     // this marks the correct nav item selected
     this.listenTo(app.router, 'page', this.handleNewPage);
+
+    window.me.fetch({
+      success: function (model) {
+        window.me = model;
+        this.model = model;
+      },
+      error: function (model, response) {
+       window.me = model;
+      }
+    });
+
   },
   events: {
     'click a[href]': 'handleLinkClick'
@@ -26,14 +40,15 @@ module.exports = View.extend({
     // some additional stuff we want to add to the document head
     document.head.appendChild(domify(require('./templates/head.hbs')()));
 
+
     // main renderer
-    this.renderWithTemplate({ me: me });
+    this.renderWithTemplate({ me: window.me });
 
     // init and configure our page switcher
     this.pageSwitcher = new ViewSwitcher(this.queryByHook('page-container'), {
       show: function (newView /*oldView*/) {
         // it's inserted and rendered for me
-        document.title = _.result(newView, 'pageTitle') || 'Ampersand test app.';
+        document.title = _.result(newView, 'pageTitle') || 'YAL Dashboard';
         document.scrollTop = 0;
 
         // add a class specifying it's active
@@ -51,7 +66,11 @@ module.exports = View.extend({
 
   handleNewPage: function (view) {
     // tell the view switcher to render the new one
-    this.pageSwitcher.set(view);
+    if (window.me._id) {
+      this.pageSwitcher.set(view);
+    } else {
+      this.pageSwitcher.set(new LoginView());
+    }
 
     // mark the correct nav item selected
     this.updateActiveNav();

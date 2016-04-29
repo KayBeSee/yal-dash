@@ -4,7 +4,6 @@ module.exports = function(app) {
 
   // Get Routes
   app.get('/api/chapters', function (req, res) {
-    console.log(req);
     if(req.query.school_name){
       ChapterController.searchByName( req.query.school_name, function (err, chapters) {
         res.send(chapters);
@@ -43,7 +42,7 @@ module.exports = function(app) {
 
   // Put Routes
   app.put('/api/chapters/:id', function (req, res) {
-    ChapterController.updateById( req.body.id, req.body, function (err, chapter) {
+    ChapterController.updateById( req.params.id, req.body, function (err, chapter) {
       res.send(chapter);
     });
   });

@@ -22,14 +22,16 @@ module.exports = {
     name: 'src',
     hook: 'user_picture_url'
   },
-
+  'model.parent': {
+    hook: 'parent'
+  },
   'model.user.region': {
     hook: 'user_region'
   },
   'model.user.role': {
     hook: 'user_role'
   },
-  'model.parent.item.school_name': {
+  'model.school_name': {
     hook: 'parent_school_name'
   },
   'model.parent.item.state': {

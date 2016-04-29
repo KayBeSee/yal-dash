@@ -2,7 +2,7 @@ var PageView   = require('./base');
 var ChapterView = require('./partials/chapter');
 
 module.exports = PageView.extend({
-  pageTitle: 'collection demo',
+  pageTitle: 'Chapters',
   template: require('../templates/pages/chapters.hbs'),
   events: {
 

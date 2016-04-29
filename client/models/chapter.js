@@ -1,5 +1,6 @@
 // chapter Model - chapter.js
 var AmpModel = require('ampersand-model');
+var Moment = require('moment');
 
 
 module.exports = AmpModel.extend({
@@ -48,6 +49,24 @@ module.exports = AmpModel.extend({
       deps: ['id'],
       fn: function () {
           return '/chapters/' + this._id + '/edit';
+      }
+    },
+    prettyDateCreated: {
+      deps: ['date_created'],
+      fn: function() {
+        return Moment(this.date_created).format('MMMM Do, YYYY');
+      }
+    },
+    prettyDateModified: {
+      deps: ['date_modified'],
+      fn: function() {
+        return Moment(this.date_modified).format('MMMM Do, YYYY');
+      }
+    },
+    prettyReplyDate: {
+      deps: ['reply_date'],
+      fn: function() {
+        return Moment(this.reply_date).format('MMMM Do, YYYY');
       }
     }
   }

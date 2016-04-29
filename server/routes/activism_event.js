@@ -41,16 +41,13 @@ module.exports = function(app) {
 
   // Put Routes
   app.put('/api/activism/:id', function (req, res) {
-    console.log('put body: ');
-    console.log(req.body);
-    ActivismEventController.updateById( req.body.id, req.body, function (err, event) {
+    ActivismEventController.updateById( req.params.id, req.body, function (err, event) {
       res.send(event);
     });
   });
 
   // Post Routes
   app.post('/api/activism', function (req, res) {
-    console.log('Activism Event Post');
     ActivismEventController.addNew(req.body, function (err, events) {
       if(err) console.log(err);
       res.send(events);

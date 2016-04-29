@@ -3,7 +3,6 @@ var path         = require('path');
 var bodyParser   = require('body-parser');
 var compress     = require('compression');
 var cookieParser = require('cookie-parser');
-var config       = require('getconfig');
 var express      = require('express');
 var helmet       = require('helmet');
 var Moonboots    = require('moonboots-express');
@@ -12,6 +11,12 @@ var serveStatic  = require('serve-static');
 var stylizer     = require('stylizer');
 
 var mongoose     = require('mongoose');
+
+var config       = require('./config.js');
+
+var session      = require('express-session');
+var RedisStore   = require('connect-redis')(session);
+var Redis        = require('redis');
 
 var app          = express();
 
@@ -26,6 +31,14 @@ var fixPath = function (pathString) {
 app.use(compress());
 app.use(serveStatic(fixPath('public')));
 
+
+// For Cross Origin Resource Shairng (CORS) (Facebook Integration)
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://yaldash-60688.onmodulus.net/");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 // we only want to expose tests in dev
 if (config.isDev) {
   app.use(serveStatic(fixPath('test/assets')));
@@ -36,12 +49,6 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
-app.post('/api/poop', function (req, res) {
-  console.log('req', req);
-  res.send('nice');
-});
-
 // in order to test this with spacemonkey we need frames
 if (!config.isDev) {
   app.use(helmet.xframe());
@@ -50,7 +57,6 @@ app.use(helmet.xssFilter());
 app.use(helmet.nosniff());
 
 app.set('view engine', 'jade');
-
 
 // -----------------
 // Enable the functional test site in development
@@ -71,11 +77,31 @@ app.use(function (req, res, next) {
   next();
 });
 
-mongoose.connect(config.mongo.url);
+
+// for Modulus MongoDB versus Dev Enviornment
+mongoose.connect(config.mongoUrl);
+
+var redisClient = Redis.createClient(config.redis.port, config.redis.host, {no_ready_check: true});
+redisClient.auth(config.redis.auth, function (err) {
+    if (err) console.log(err);
+});
+redisClient.on('connect', function() {
+    console.log('Connected to Redis');
+});
+
+app.use(session({
+  key: config.key,
+  secret: config.redis.secret,
+  cookie: config.redis.cookie,
+  resave: true,
+  saveUninitialized: true,
+  store: new RedisStore({
+    client: redisClient
+  })
+}));
 
 
 require('./server/routes')(app);
-
 
 // ---------------------------------------------------
 // Configure Moonboots to serve our client application
@@ -115,6 +141,6 @@ new Moonboots({
 
 
 // listen for incoming http requests on the port as specified in our config
-app.listen(config.http.port, function(){
-  console.log('Application running on port ' + config.http.port);
+app.listen(config.PORT, function(){
+  console.log('Application running on port ' + config.PORT);
 });

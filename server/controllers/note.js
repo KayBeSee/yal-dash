@@ -1,12 +1,14 @@
 var Note = require('../models/note.js');
-var mongoose = require('mongoose');
-var deepPopulate = require('mongoose-deep-populate')(mongoose);
+var Chapter = require('../models/chapter.js');
 
 // Get Commands
 exports.getAll = function(done) {
-  Note.find({ }).populate({path: 'user parent.item', populate: {path:'parent'}}).exec( function (err, notes) {
+  Note.find({ }).populate('user parent.item').exec( function (err, notes) {
     if (err) return done(err, null);
-    done(null, notes);
+    Chapter.populate(notes, {path: 'parent.item.chapter'}, function (err, notes){
+      if (err) return done(err, null);
+      done(null, notes);
+    })
   });
 }
 
@@ -46,7 +48,7 @@ exports.getByChapter = function(id, done) {
 
 // Post Commands
 exports.addNew = function(note, done) {
-  console.log('note', note);
+  console.log('note: ', note);
   var newNote = new Note({
     user: note.user,
     parent: {

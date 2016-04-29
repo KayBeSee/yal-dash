@@ -18,7 +18,7 @@ module.exports = AmpModel.extend({
       role: 'string'
     },
     parent: {
-      kind: 'string',
+      kind: ['string'],
       item: 'object'
     },
     date_created: ['date'],
@@ -29,11 +29,11 @@ module.exports = AmpModel.extend({
    viewUrl: {
       deps: ['id', 'parent'],
       fn: function () {
-        if(parent.item){
-          if(parent.kind = "Chapter"){
+        if('this', this.parent.item){
+          if(this.parent.kind = "Chapter"){
             return '/chapters/' + this.parent.item._id;
           }
-          if(parent.kind = "ActivismEvent"){
+          else if(this.parent.kind = "ActivismEvent"){
             return '/activism_events/' + this.parent.item._id;
           }
         }
@@ -49,6 +49,19 @@ module.exports = AmpModel.extend({
       deps: ['date_created'],
       fn: function() {
         return Moment(this.date_created).format('LLLL');
+      }
+    },
+    school_name: {
+      deps: ['parent.kind', 'parent.item', 'parent.item.chapter.school_name'],
+      fn: function() {
+        if(this.parent.item){
+          if(this.parent.kind = "Chapter"){
+            return this.parent.item.school_name;
+          }
+          else if(this.parent.kind = "ActivismEvent"){
+            return this.parent.item.chapter.school_name;
+          }
+        }
       }
     }
   }

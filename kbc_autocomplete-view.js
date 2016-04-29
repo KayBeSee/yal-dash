@@ -44,14 +44,14 @@ var ItemView = View.extend({
 
 module.exports = View.extend({
     template: [
-        '<label>',
-            '<span data-hook="label"></span>',
-            '<input class="form-input" autocomplete="off">',
+        '<div class="form-group">',
+            '<span class="form-label" data-hook="label"></span>',
+            '<input class="form-input btn-block" autocomplete="off">',
             '<ul class="dropdown-menu"></ul>',
             '<div data-hook="message-container" class="message message-below message-error">',
                 '<p data-hook="message-text"></p>',
             '</div>',
-        '</label>'
+        '</div>'
     ].join(''),
     bindings: {
         'name': {

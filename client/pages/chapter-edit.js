@@ -42,6 +42,7 @@ module.exports = PageView.extend({
               wait: true,
               success: function () {
                 app.navigate('/chapters');
+                app.chapters.fetch();
               }
             });
           }

@@ -1,5 +1,6 @@
 /*global me, app*/
 var Router = require('ampersand-router');
+var LoginPage = require('./pages/login');
 var HomePage = require('./pages/home');
 var InfoPage = require('./pages/info');
 var NotesPage = require('./pages/notes');
@@ -11,12 +12,17 @@ var ActivismEventsPage = require('./pages/activism_events');
 var ActivismEventViewPage = require('./pages/activism_event');
 var ActivismEventEditPage = require('./pages/activism_event-edit');
 var ActivismEventAddPage = require('./pages/activism_event-add');
+var UsersPage = require('./pages/users');
+var UserEditPage = require('./pages/user-edit');
+var UserAddPage = require('./pages/user-add');
+var UserViewPage = require('./pages/user');
 
 
 module.exports = Router.extend({
   routes: {
     ''                          : 'home',
     'info'                      : 'info',
+    'login'                     : 'login',
     'notes'                     : 'notes',
     'chapters'                  : 'chapters',
     'chapters/:id'              : 'chapterView',
@@ -26,24 +32,22 @@ module.exports = Router.extend({
     'activism_events/:id'       : 'activism_eventView',
     'activism_events/:id/edit'  : 'activism_eventEdit',
     'activism_event/add'        : 'activism_eventAdd',
-    // 'students'                  : 'students',
-    // 'students/:id'              : 'studentView',
-    // 'students/:id/edit'         : 'studentEdit',
-    // 'students/add'              : 'studentAdd',
-    // 'users'                     : 'users',
-    // 'users/:id'                 : 'userView',
-    // 'users/:id/edit'            : 'userEdit',
-    // 'users/add'                 : 'userAdd',
-    // 'notes'                     : 'notes',
-    // 'notes/:id'                 : 'noteView',
-    // 'notes/:id/edit'            : 'noteEdit',
-    // 'notes/add'                 : 'noteAdd',
+    'users/:id'                  : 'userView',
+    'users'                     : 'users',
+    'users/:id/edit'            : 'userEdit',
+    'user/add'                  : 'userAdd',
     '(*path)'                   : 'catchAll'
   },
 
   // ------- ROUTE HANDLERS ---------
   home: function () {
     this.trigger('page', new HomePage({
+      model: me
+    }));
+  },
+
+  login: function () {
+    this.trigger('page', new LoginPage({
       model: me
     }));
   },
@@ -103,6 +107,29 @@ module.exports = Router.extend({
 
   activism_eventView: function (id) {
     this.trigger('page', new ActivismEventViewPage({
+      id: id
+    }));
+  },
+
+  users: function () {
+    this.trigger('page', new UsersPage({
+      model: me,
+      collection: app.users
+    }));
+  },
+
+  userAdd: function () {
+    this.trigger('page', new UserAddPage());
+  },
+
+  userEdit: function (id) {
+    this.trigger('page', new UserEditPage({
+      id: id
+    }));
+  },
+
+  userView: function (id) {
+    this.trigger('page', new UserViewPage({
       id: id
     }));
   },

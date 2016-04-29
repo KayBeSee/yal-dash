@@ -23,7 +23,7 @@ module.exports = function(app) {
 
   // Put Routes
   app.put('/api/students/:id', function (req, res) {
-    StudentController.updateById( req.body.id, req.body, function (err, student) {
+    StudentController.updateById( req.params.id, req.body, function (err, student) {
       res.send(student);
     });
   });

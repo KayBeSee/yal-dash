@@ -8,6 +8,8 @@ module.exports = View.extend({
     'click [data-hook~=action-delete]': 'handleRemoveClick',
     'click [data-hook=action-edit]': 'handleEditClick'
   },
+  initialize: function () {
+  },
   handleEditClick: function() {
 
   },

@@ -39,15 +39,15 @@ module.exports = function(app) {
     });
   });
 
-  app.get('/api/notes/user/:name', function(req, res){
-    NotesController.getByStateChair(req.params.name, function(err, notes){
+  app.get('/api/notes/users/:id', function(req, res){
+    NotesController.getByUser(req.params.id, function(err, notes){
       res.send(notes);
     });
   });
 
   // Put Routes
   app.put('/api/notes/:id', function (req, res) {
-    NotesController.updateById( req.body.id, req.body, function (err, note) {
+    NotesController.updateById( req.params.id, req.body, function (err, note) {
       res.send(note);
     });
   });

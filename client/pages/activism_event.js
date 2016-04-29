@@ -5,6 +5,7 @@ var activism_event_bindings = require('../bindings/_activism_event');
 var NotesView = require('./partials/notes');
 var NoteForm = require('../forms/note');
 var NoteModel = require('../models/note');
+var Notes = require('../models/notes');
 var ActivismEvents = require('../models/activism_events');
 var ActivismEventView = require('./partials/activism_events');
 
@@ -24,7 +25,7 @@ module.exports = PageView.extend({
         return new NotesView({
           el         : el,
           parent     : this,
-          collection : this.collection
+          collection : this.notes
         });
       }
     },
@@ -37,15 +38,17 @@ module.exports = PageView.extend({
           model: new NoteModel(),
           parent: this,
           submitCallback: function(obj){
-            this.parent.collection.url = '/api/notes';
+            console.log('obj', obj);
+            this.parent.notes.url = '/api/notes';
             this.model = new NoteModel();
             this.model.user = window.me._id;
             this.model.parent = {};
             this.model.parent.item = this.parent.model._id;
-            this.model.parent.kind = 'ActivismEvent';
+            this.model.parent.kind = 'Activism_Event';
             this.model.message = obj.message;
-            this.parent.collection.create(this.model);
-            this.router.reload();
+            this.parent.notes.create(this.model);
+            console.log('this.model', this.model);
+            app.router.reload();
           }
         });
       },
@@ -54,13 +57,13 @@ module.exports = PageView.extend({
   },
   initialize: function (spec) {
     var self = this;
-    self.collection = new Collection([], {model: NoteModel});
+    self.notes = new Notes();
     app.activism_events.getOrFetch(spec.id, {all: true}, function (err, model) {
-      console.log('spec.id', spec.id);
       if (err) alert('couldnt find a model with id: ' + spec.id);
       self.model = model;
-      self.collection.url = '/api/notes/activism_event/' + spec.id;
-      self.collection.fetch();
+      self.notes.url = '/api/notes/activism_event/' + spec.id;
+      self.notes.fetch();
+      self.notes.url = '/api/notes';
     });
   },
   viewChapter: function () {
@@ -68,7 +71,7 @@ module.exports = PageView.extend({
   },
   handleDeleteClick: function () {
     this.model.destroy({success: function () {
-      app.navigate('activism_events');
+      app.reload();
     }});
   }
 });

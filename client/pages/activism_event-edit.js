@@ -1,6 +1,6 @@
 /* global app, alert */
 var PageView = require('./base');
-var ActivismEventForm = require('../forms/activism_event');
+var ActivismEventForm = require('../forms/edit_activism_event');
 
 module.exports = PageView.extend({
   pageTitle: 'edit activism event',
@@ -39,9 +39,10 @@ module.exports = PageView.extend({
           model: this.model,
           submitCallback: function (data) {
             model.save(data, {
-              wait: true,
+              wait: false,
               success: function () {
                 app.navigate('/activism_events');
+                app.activism_events.fetch();
               }
             });
           }

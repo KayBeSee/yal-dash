@@ -46,7 +46,6 @@ exports.getByStateChair = function(name, done) {
 
 // Post Commands
 exports.addNew = function(chapter, done) {
-  console.log('chapter', chapter);
   var newChapter = new Chapter({
   school_name: chapter.school_name,
   city: chapter.city,

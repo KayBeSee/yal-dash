@@ -4,4 +4,5 @@ module.exports = function(app) {
   require('./note')(app);
   require('./user')(app);
   require('./student')(app);
+  require('./me')(app);
 }
